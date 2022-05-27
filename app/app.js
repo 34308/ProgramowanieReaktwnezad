@@ -8,6 +8,24 @@ import routes from './REST/routes';
 
 const app = express();
 app.use(express.static(__dirname + '/public'));
+mongoose.connect(config.databaseUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}, (error) => {
+  if (error) {
+    console.error(error);
+  }
+  else {
+    console.info('Connect with database established');
+  }
+});
+
+process.on('SIGINT', () => {
+  mongoose.connection.close(function () {
+    console.error('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
+});
 
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({extended: false}));
