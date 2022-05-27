@@ -13,6 +13,7 @@ import {
     Routes,
     Route,
 } from "react-router-dom";
+import LoginForm from "./components/loginForms";
 //pamiętać proszę o imporcie komponentu Posts oraz Home
 
 ReactDOM.render(
@@ -20,9 +21,8 @@ ReactDOM.render(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App/>}>
-
+                    <Route path="login" element={<LoginForm/>}/>
                     <Route path="home" element={<Home/>}/>
-
                     <Route path="posts" element={<Posts/>}/>
                     <Route
                         path="*" element={<NotFound/>}
